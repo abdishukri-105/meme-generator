@@ -1,18 +1,20 @@
 class ApplicationController < Sinatra::Base
     set :default_content_type, 'application/json'
     
-    # Add your routes here
+    # fetch all memes
     get '/memes' do
         memes = Meme.order(:created_at)
         memes.to_json
     end
 
+    #  delete specific meme
     delete '/memes/:id' do
         memes = Meme.find(params[:id])
         memes.destroy
         memes.to_json
     end
 
+    # create a new meme
     post '/memes' do 
         memes = Meme.create(
             title: params[:title],
@@ -22,14 +24,17 @@ class ApplicationController < Sinatra::Base
         memes.to_json
     end
 
+    # update a meme
     patch '/memes/:id' do 
         memes = Meme.find(params[:id])
         memes.update(
-            message: params[:message],
+            title: params[:title],
+            message: params[:message]
         )
         memes.to_json
     end
 
+    # add a user
     post '/users' do
         users = User.create(
             username: params[:username],
@@ -40,7 +45,8 @@ class ApplicationController < Sinatra::Base
         users.to_json
     end
 
-    get '/users' do
+    # fetch a user with his memes
+    get '/users/id' do
         users = User.all
         users.to_json(include: :memes)
     end
