@@ -51,4 +51,39 @@ class ApplicationController < Sinatra::Base
         users.to_json(include: :memes)
     end
   
+ # Register a new user
+post '/register' do
+    user = User.new(
+      username: params[:username],
+      email: params[:email],
+      password: params[:password]
+    )
+    if user.save
+      { message: 'User registered successfully' }.to_json
+    else
+      { errors: user.errors.full_messages }.to_json
+    end
+  end
+  
+
+
+  post '/login' do
+    user = User.find_by(username: params[:username])
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id # Store user ID in session
+      { message: 'User logged in successfully' }.to_json
+    else
+      { error: 'Invalid username or password' }.to_json
+    end
+  end
+
+#   get '/me' do
+#     if session[:user_id]
+#       user = User.find(session[:user_id])
+#       { username: user.username, email: user.email }.to_json
+#     else
+#       { error: 'Not authenticated' }.to_json
+#     end
+#   end
+
   end
