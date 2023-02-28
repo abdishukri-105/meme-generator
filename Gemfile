@@ -1,6 +1,6 @@
 source "https://rubygems.org/"
 
-
+gem "rack-cors", "~> 1.1"
 
 gem 'sinatra', '~> 3.0', '>= 3.0.5'
 
@@ -20,7 +20,10 @@ gem 'puma', '~> 6.1'
 
 gem 'require_all', '~> 3.0'
 
+gem "rack-contrib", "~> 2.3"
+
 group :development do
+    gem "pry", "~> 0.14.1"
     gem 'rerun', '~> 0.14.0'
     gem 'faker'
 end
