@@ -1,0 +1,4 @@
+class MemeController < AppController
+
+
+end
