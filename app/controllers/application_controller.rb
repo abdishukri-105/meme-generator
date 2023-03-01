@@ -46,10 +46,11 @@ class ApplicationController < Sinatra::Base
     end
 
     # fetch a user with his memes
-    get '/users/id' do
-        users = User.all
-        users.to_json(include: :memes)
-    end
+    get '/users/:id' do
+        user = User.find(params[:id])
+        user_memes = user.memes
+        user_memes.to_json
+      end
   
  # Register a new user
 post '/register' do
