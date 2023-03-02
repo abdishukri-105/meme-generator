@@ -16,7 +16,8 @@ gem 'sinatra-activerecord', '~> 2.0', '>= 2.0.26'
 
 gem 'bcrypt', '~> 3.1', '>= 3.1.18'
 
-gem 'puma', '~> 6.1'
+
+gem 'puma'
 
 gem 'require_all', '~> 3.0'
 
