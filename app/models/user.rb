@@ -12,5 +12,4 @@ class User < ActiveRecord::Base
       BCrypt::Password.new(password_digest) == password
     end
   
-
 end
