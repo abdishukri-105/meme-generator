@@ -68,6 +68,26 @@ post '/users/:user_id/memes' do
   end
 end
 
+# edit meme
+patch '/users/:id/memes/:meme_id' do
+  user = User.find_by(id: params[:user_id])
+  if user
+    meme = user.memes.find_by(id: params[:meme_id])
+    if meme
+      if meme.update(title: params[:title], message: params[:message])
+        meme.to_json(include: { user: { only: :username } })
+      else
+        halt 422, { error: 'Meme could not be updated' }.to_json
+      end
+    else
+      halt 404, { error: 'Meme not found' }.to_json
+    end
+  else
+    halt 404, { error: 'User not found' }.to_json
+  end
+end
+
+
   # delete meme from database
 delete '/memes/:id/users/:user_id' do
   meme = Meme.find_by(id: params[:id], user_id: params[:user_id])
