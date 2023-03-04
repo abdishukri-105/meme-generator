@@ -52,6 +52,22 @@ get '/my_memes/:id' do
     halt 404, { error: 'User not found' }.to_json
   end
 end
+
+# post a meme
+post '/users/:user_id/memes' do
+  user = User.find_by(id: params[:user_id])
+  if user
+    meme = user.memes.create(title: params[:title], message: params[:message])
+    if meme.valid?
+      meme.to_json(include: { user: { only: :username } })
+    else
+      halt 422, { error: 'Meme could not be created' }.to_json
+    end
+  else
+    halt 404, { error: 'User not found' }.to_json
+  end
+end
+
   
   
   
