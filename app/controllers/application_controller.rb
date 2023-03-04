@@ -41,7 +41,7 @@ get '/memes' do
   { memes: memes }.to_json
 end
 
-# fetch logged in user memes 
+# fetch logged in user's memes 
 get '/my_memes/:id' do
   user = User.find_by(id: params[:id])
   if user
@@ -68,6 +68,16 @@ post '/users/:user_id/memes' do
   end
 end
 
+  # delete meme from database
+delete '/memes/:id/users/:user_id' do
+  meme = Meme.find_by(id: params[:id], user_id: params[:user_id])
+  if meme
+    meme.destroy
+    { message: 'Meme deleted' }.to_json
+  else
+    halt 404, { error: 'Meme not found' }.to_json
+  end
+end
   
   
   
