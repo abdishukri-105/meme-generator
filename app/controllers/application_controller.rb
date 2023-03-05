@@ -104,9 +104,6 @@ end
 
 
 
-
-
-
 # logout user
 post '/logout' do
   session.clear
