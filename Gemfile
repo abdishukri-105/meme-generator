@@ -1,5 +1,7 @@
 source "https://rubygems.org/"
 
+ruby File.read('.ruby-version').strip
+
 gem "rack-cors", "~> 1.1"
 
 gem 'sinatra', '~> 3.0', '>= 3.0.5'
