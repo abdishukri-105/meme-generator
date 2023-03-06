@@ -10,6 +10,6 @@ class User < ActiveRecord::Base
     # Authenticate user with encrypted password
     def authenticate(password)
       BCrypt::Password.new(password_digest) == password
-    end
+    end 
   
 end
