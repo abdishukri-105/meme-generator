@@ -41,6 +41,7 @@ get '/memes' do
   { memes: memes }.to_json
 end
 
+
 # fetch logged in user's memes 
 get '/my_memes/:id' do
   user = User.find_by(id: params[:id])
