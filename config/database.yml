@@ -9,7 +9,7 @@ development:
 
 production:
   <<: *default
-  database: db/memes-prod.sqlite3
+  database: db/memes-prod.db
 
 test:
   <<: *default
