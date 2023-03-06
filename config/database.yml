@@ -1,6 +1,6 @@
 default: &default
   adapter: sqlite3
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  # pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
 
 development:
@@ -9,7 +9,7 @@ development:
 
 production:
   <<: *default
-  database: db/memes-prod.sqlite3
+  database: db/memes-prod.db
 
 test:
   <<: *default
