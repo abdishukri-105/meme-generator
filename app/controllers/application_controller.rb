@@ -99,10 +99,6 @@ delete '/memes/:id/users/:user_id' do
   end
 end
   
-  
-  
-
-
 
 # logout user
 post '/logout' do
